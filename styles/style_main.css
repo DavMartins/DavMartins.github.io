@@ -42,6 +42,7 @@
     --tl-descript-indent:40px;
     --li-bullet-width:13px;
     --transit-dur:0.4s;
+    --sticky-year-top:-1px;
 
     font-size: var(--base-font-size);
 }
@@ -67,7 +68,7 @@ h1{
 }
 h2{
     font-family: NotoSans-Bold;
-    font-size: 1.9rem;
+    font-size: 1.8rem;
 }
 h3{
     font-family: NotoSans-Bold;
@@ -86,10 +87,11 @@ p{
 }
 header{
     width:100%;
-    height:calc(100vh - 300px);
+    height:calc(100vh - 450px);
+    min-height: 200px;
     position:relative;
     padding:20px 0px;
-    background-color:dodgerblue;
+    background: linear-gradient(120deg, rgba(0,124,179,1) 0%, rgba(38,189,244,1) 100%);
     overflow:hidden;
 }
 ul{
@@ -200,48 +202,92 @@ header .main-holder{
     top:50%;
     transform: translateY(-50%);
 }
+.content--secondary{
+    background:rgba(0, 125, 179, 0.08);
+    padding:30px 0px;
+}
+.recent--projects{
+    display:flex;
+}
+.recent--descript{
+    flex-grow: 1;
+    position:relative;
+    font-family: NotoSans-Regular;
+    font-size:1.25rem;
+}
+.recent--descript span{
+    display:block;
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+}
+.projects--holder{
+    display:flex;
+    position:relative;
+}
+.project{
+    flex-grow: 0;
+    width:200px;
+    height:200px;
+    position: relative;
+    overflow: hidden;
+    border-radius:15px;
+    margin:0px 0px 0px 15px;
+    background:rgba(0, 125, 179, 0.2);
+}
+.project:hover .project--overlay{
+    background: linear-gradient(60deg, rgba(255,255,255,0.65) 30%, rgba(255,255,255,0) 100%);
+    opacity:1;
+    transition: opacity var(--transit-dur);
+}
+.project--thumb{
+    width:100%;
+    height:100%;
+    position: absolute;
+}
+.project--overlay{
+    width:100%;
+    height:100%;
+    position: absolute;
+    background: linear-gradient(60deg, rgba(255,255,255,0.65) 10%, rgba(255,255,255,0) 100%);
+    opacity:0.8;
+}
 .timeline--holder{
     display:grid;
+    position:relative;
     grid-auto-flow: row;
-    /* grid-template-columns: var(--tl-graph-width) var(--tl-details-width) var(--tl-descript-width); */
-    /* grid-template-rows:var(--tl-stop-height) auto var(--tl-stop-height) auto var(--tl-stop-height) auto var(--tl-stop-height); */
-    /* grid-template-areas: "graph-area detail-area descript-area"; */
     transition: all var(--transit-dur);
 }
-
 .timeline--holder div{
     transition: all var(--transit-dur);
 }
 .timeline--segment{
     display:grid;
     grid-template-columns: var(--tl-graph-width) var(--tl-details-width) var(--tl-descript-width);
-    grid-template-rows:var(--tl-stop-height) auto;
-    /* grid-template-areas: "graph-area detail-area descript-area"; */
+    grid-template-rows: minmax(var(--tl-stop-height), auto) auto;
     transition: all var(--transit-dur);
 }
 
 .timeline--graph{
-    grid-column: 1/2;
-    grid-row: 1/-1;
     width:var(--tl-graph-line);
     height:calc(100% - (var(--tl-stop-width) * 2) );
-    position: relative;
-    left:50%;
+    position: absolute;
+    left:calc(var(--tl-graph-width) / 2);
     top:50%;
     transform: translate(-50%, -50%);
     background-color:rgba(var(--second-color), 1);
     /* transition: all var(--transit-dur); */
 }
-
 .timeline--holder p{
     margin:0px;
     padding-bottom:15px;
 }
 .timeline--stop-holder{
-    grid-column: 1/2;
     width:100%;
     height:var(--tl-stop-height);
-    position: relative;
+    position: sticky;
+    top:var(--sticky-year-top);
+    z-index: 2;
 }
 .timeline--stop{
     width:var(--tl-stop-width);
@@ -259,31 +305,17 @@ header .main-holder{
 .stop--1 .timeline--stop{
     width: 38px;
     height:38px;
+    padding: 2px;
 }
 .stop--1 .timeline--stop::after{
     content:"";
-    width:calc(100% - 5px);
-    height:calc(100% - 5px);
+    width: 100%;
+    height: 100%;
     display:block;
     position: relative;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
     border-radius: 50%;
     box-sizing: border-box;
-    background-color: cornflowerblue;
-}
-.timeline--stop-holder.stop--1, .year--1{
-    grid-row: 1/2;
-}
-.timeline--stop-holder.stop--2, .year--2{
-    grid-row: 3/4;
-}
-.timeline--stop-holder.stop--3, .year--3{
-    grid-row: 5/6;
-}
-.timeline--stop-holder.stop--4, .year--4{
-    grid-row: 7/8;
+    background-color: rgba(0,124,179,1);
 }
 .timeline--skill-holder{
     grid-column: 1/2;
@@ -301,14 +333,8 @@ header .main-holder{
     padding: 0px 20px 0px 20px;
     box-sizing: border-box;
 }
-.timeline--skill-holder.holder--1, .timeline--level-holder.holder--1{
+.timeline--skill-holder, .timeline--level-holder{
     grid-row: 2/3;
-}
-.timeline--skill-holder.holder--2, .timeline--level-holder.holder--2{
-    grid-row: 4/5;
-}
-.timeline--skill-holder.holder--3, .timeline--level-holder.holder--3{
-    grid-row: 6/7;
 }
 .timeline--skill-holder .timeline--skill{
     width:var(--tl-skill-width);
@@ -327,7 +353,6 @@ header .main-holder{
     height: var(--tl-skill-width);
     margin: var(--tl-skill-margin) 0px var(--tl-skill-margin) 0px;
     background-color: rgba(0,0,0,0.0);
-   /*  transition: all var(--transit-dur); */
 }
 .timeline--level-holder .timeline--level svg{
     width:100%;
@@ -340,8 +365,6 @@ header .main-holder{
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
-
-   /*  transition: all var(--transit-dur); */
 }
 .level-bar{
     width:100%;
@@ -374,7 +397,10 @@ header .main-holder{
 }
 .timeline--year{
     grid-column:2/3;
+    position:sticky;
+    top:var(--sticky-year-top);
     padding:0px 0px 0px 20px;
+    z-index:2;
 }
 .timeline--year span{
     font-family: NotoSans-Medium;
@@ -389,25 +415,29 @@ header .main-holder{
 .timeline--descript .descript--title{
     padding:0px 0px 15px 0px;
 }
-/* .timeline--divider{
-    width:100%;
-    height:100%;
-    display: block;
-    position: relative;
-} */
-
 .timeline--divider{
     width:100%;
     height:100%;
     display: block;
     position: sticky;
+    top:var(--sticky-year-top);
+    z-index: 1;
+}
+.timeline--divider .divider--backdrop{
+    height:calc(100% + 20px);
+    /* width:calc(100% + var(--tl-details-width) + var(--tl-graph-width)); */
+    width:calc(100% + var(--tl-details-width));
+    position: absolute;
     top:0px;
+    right:0px;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
 }
 .timeline--divider h2{
-    padding: 13px 0px 0px var(--tl-descript-indent);
+    position: relative;
+    padding: 15px 0px 0px var(--tl-descript-indent);
     color: rgba(var(--second-color), 1);
 }
-.timeline--divider .divide-line{
+.timeline--divider .divider-line{
     width:100%;
     height:1px;
     position: absolute;
@@ -415,8 +445,7 @@ header .main-holder{
     transform: translateY(-50%);
     background-color:rgba(var(--second-color), 0.5);
 }
-
-.timeline--divider.topmost .divide-line{
+.timeline--divider.topmost .divider-line{
     width:20px;
 }
 
@@ -435,21 +464,41 @@ header .main-holder{
         /* screen and (max-width:1000px) and (min-resolution: 3dppx) */
         {
     :root{
-        --base-font-size:13px;
+        --base-font-size:14px;
         --main-holder-padding:15px;
         --tl-graph-width:40px;
         --tl-graph-line:3px;
         --tl-stop-width:calc(var(--tl-graph-width) - 20px);
+        --tl-stop-height:80px;
         --tl-skill-width:var(--tl-graph-width);
-        --tl-details-width:50px;
+        --tl-skill-margin:15px;
+        --tl-details-width:0px;
+        --li-bullet-width:11px;
+        --sticky-year-top:-10px;
+        
+    }
+    header{
+        height:calc(100vh - 325px);
     }
     h1{
-        /* font-size: 1.8rem; */
-        /* line-height: 1.25; */
         margin:0px 0px 5px 0px;
+    }
+    h1, h2, h3{
+        line-height: 1.4;
+    }
+    h4{
+        padding-top:5px;
+        line-height: 1.5;
     }
     header .main-holder{
         height:auto;
+    }
+    ul li .li--bullet {
+        top: 8px;
+        border: solid 2px rgba(var(--second-color), 1);
+    }
+    section{
+        padding:40px 0px;
     }
     .subject-header{
         display: grid;
@@ -474,12 +523,10 @@ header .main-holder{
         display: inline;
     }
     .subject-intro-holder {
-        padding: 0px;
+        padding: 15px 0px 0px 0px;
         grid-area: intro-text;
+        text-align: center;
     }
-    /* .subject-info-holder span{
-        display:block;
-    } */
     .subject-info p{
         font-size:1rem;
         line-height: 1.35;
@@ -488,20 +535,73 @@ header .main-holder{
     .subject-info .small-text{
         display:inline;
     }
-    .timeline--stop.stop--1{
-        width: 34px;
-        height:34px;
-        margin:3px;
+    .recent--projects{
+        flex-direction: column;
+    }
+    .recent--descript {
+        width:100%;
+        padding-bottom: 30px;
+        box-sizing: border-box;
+    }
+    .recent--descript span{
+       display: inline;
+    }
+    .projects--holder{
+        width: calc(100% + 10px);
+        left:-5px;
+    }
+    .project{
+        height:100px;
+        margin: 0px 5px;
+        border-radius: 10px;
+    }
+    .timeline--holder {
+        width:calc(100% + 5px);
+        left:-5px;
+    }
+    .stop--1 .timeline--stop{
+        width: 32px;
+        height:32px;
+    }
+    .timeline--year {
+        padding: 0px 0px 0px 0px;
+    }
+    .timeline--year span {
+        padding:1px 0px 0px 15px;
+        display:block;
     }
     .timeline--level-holder {
         padding: 0px 10px 0px 15px;;
     }
-    .timeline--descript{
-        padding:0px 0px 0px 10px;
+    .timeline--level-holder .timeline--level svg {
+        width: 30px;
+        min-width: 30px;
+        top: 35px;
+        left: -20px
     }
-    
+    .timeline--descript{
+        padding:0px 0px 0px 15px;
+    }
     .level-bar {
         height: 5px;
     }
+    .timeline--divider h2{
+        padding: 25px 0px 20px calc(var(--tl-descript-indent) + 30px);
+        font-size:1.3rem;
+    }
+    .timeline--divider .divider-line{
+        width: calc(100% - 70px);
+        right:0px;
+    }
+    .timeline--divider.topmost .divider-line{
+        display:none;
+    }
+    .timeline--divider .divider--backdrop {
+        height: calc(100% + 25px);
+    }
+    .timeline--graph{
+        height:calc(100% - (var(--tl-stop-width) * 3) );
+    }
+
 }
 
