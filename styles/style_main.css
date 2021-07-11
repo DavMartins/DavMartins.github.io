@@ -440,6 +440,7 @@ header .main-holder{
     backdrop-filter:blur(7px);
     z-index:4;
     top:0px;
+    display:none;
 }
 .project--overlay.main--ov{
     background: linear-gradient(25deg, rgba(var(--main-blue),1) 20%, rgba(var(--main-blue),0.95) 35%, rgba(var(--mid-blue),0.4) 85%, rgba(var(--mid-blue),0) 120%);
@@ -518,6 +519,7 @@ header .main-holder{
     box-sizing: border-box;
     background-color: rgba(255,255,255,0.93);
     z-index:5;
+    display:none;
 }
 .project--popup .project--thumb{
     width:calc(100% + 10px);
