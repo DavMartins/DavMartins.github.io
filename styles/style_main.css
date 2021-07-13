@@ -48,6 +48,7 @@
     --transit-dur:0.4s;
     --sticky-year-top:-1px;
     --main-gradient: linear-gradient(120deg, rgb(var(--main-blue)) 25%, rgb(var(--mid-blue)) 100%);
+    --btn-gradient: linear-gradient(120deg, rgb(var(--main-blue)) 25%, rgb(var(--mid-blue)) 180%);
     --stop-shadow: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
     --photo-hold-size:200px;
 
@@ -63,13 +64,13 @@ body{
 }
 div{
     scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.15) rgba(255,255,255,0);
+    scrollbar-color: rgba(0,0,0,0.2) rgba(0,0,0,0);
 }
 div::-webkit-scrollbar-track{
-    background-color: rgba(255,255,255,0);
+    background-color: rgba(0,0,0,0);
 }
 div::-webkit-scrollbar-thumb{
-    background-color: rgba(255,255,255,0.15);
+    background-color: rgba(0,0,0,0.2);
 }
 div::-webkit-scrollbar{
     width: 7px;
@@ -189,6 +190,35 @@ ul ul li .li--bullet{
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
     box-sizing: border-box;
+}
+button{
+    height:45px;
+    color:rgba(var(--a-alt-color));
+    border-radius:8px;
+    padding:10px 25px;
+    box-sizing: border-box;
+    background:var(--btn-gradient);
+    border: none;
+    border-radius:10px;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* transition-property: background-color; */
+    cursor: pointer;
+}
+button.btn--sq{
+    height:45px;
+    width:45px;
+    padding:5px;
+}
+button a{
+    color:rgba(var(--a-alt-color));
+}
+button a::after{
+    background-color:rgba(var(--a-alt-color));
+}
+button a:hover::after{
+    background-color:rgba(var(--a-alt-color));
 }
 .dark-bg{
     background: var(--main-gradient);
@@ -440,14 +470,16 @@ header .main-holder{
     backdrop-filter:blur(7px);
     z-index:4;
     top:0px;
-    display:none;
+    visibility: visible;
+    opacity:1;
+    transition: all calc(var(--transit-dur) / 1.5);
 }
 .project--overlay.main--ov{
     background: linear-gradient(25deg, rgba(var(--main-blue),1) 20%, rgba(var(--main-blue),0.95) 35%, rgba(var(--mid-blue),0.4) 85%, rgba(var(--mid-blue),0) 120%);
     opacity:1;
 }
 .project--overlay.sec-ov{
-    background: linear-gradient(25deg, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.97) 45%, rgba(var(--mid-blue) ,0.7) 95%, rgba(var(--mid-blue), 0.4) 140%);
+    background: linear-gradient(25deg, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.97) 50%, rgba(160, 228, 255, 0.85) 95%, rgba(160, 228, 255, 0.75) 140%);
     opacity:1;
 }
 .project:hover .project--overlay{
@@ -505,9 +537,12 @@ header .main-holder{
 }
 .project--popup{
     width:calc(100% - 35px);
+    height:calc(100vh - 35px);
     max-width: 720px;
-    min-height: 650px;
-    max-height:calc(100vh - 35px);
+    /* min-height: 650px; */
+    max-height: 720px;
+    display:flex;
+    flex-direction: column;
     position:fixed;
     padding: 40px;
     top:50%;
@@ -519,14 +554,22 @@ header .main-holder{
     box-sizing: border-box;
     background-color: rgba(255,255,255,0.93);
     z-index:5;
-    display:none;
+    opacity:1;
+    visibility: visible;
+    transition: all calc(var(--transit-dur) / 1.5);  
+}
+.project--popup.dont-show{
+    /* width:80%;
+    max-width: 700px;
+    min-height: 630px;
+    max-height:calc(100vh - 300px); */
 }
 .project--popup .project--thumb{
-    width:calc(100% + 10px);
-    height:calc(100% + 10px);
-    top:-5px;
-    left:-5px;
-    filter: blur(2.5px);
+    width:calc(100% + 6px);
+    height:calc(100% + 6px);
+    top:-3px;
+    left:-3px;
+    filter: blur(3px);
 }
 .project--popup .project--overlay.main--ov{
     opacity:0;
@@ -537,25 +580,35 @@ header .main-holder{
     height:100%;
     margin:0 auto;
     position:relative;
-    display:grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto auto;
-    grid-template-areas: "Title Title"
-                        "Desciption Images"
-                        "Tools Tools";
-    gap:20px;
+    display:flex;
+    flex-direction: column;
 }
 .project--info-holder .project--title{
-    grid-area: Title;
     max-width: 100%;
     position: relative;
-    padding: 0px 0px 0px 0px;
+    padding: 0px 0px 10px 0px;
+    flex-grow: 0;
+    flex-shrink: 0; 
 }
 .project--info-holder .project--title .main--title{
     font-size:1.8rem;
 }
+.project--info-holder .project--title .sub--title{
+    color:rgb(65, 65, 65);
+}
+.project--info-holder .project--title .main--title::after{
+    display:none;
+}
+.project--info-holder .divider-line{
+    position:absolute;
+    width:100%; 
+    height:2px;
+    background-color: rgba(0,0,0, 0.05); 
+}
+.project--info-holder .project--title .divider-line{
+    bottom:0px;  
+}
 .project--info-holder .project--img-holder{
-    grid-area: Images;
     width:200px;
     position: relative;
     display: flex;
@@ -571,11 +624,48 @@ header .main-holder{
 }
 .project--descript{
     height:100%;
-    overflow: auto;
-    max-height:390px;   
+    overflow: auto; 
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 15px 0px;
+      
 }
 .project--tools-holder{
 
+}
+.project--info-holder .btn--holder{
+    flex-grow: 0;
+    flex-shrink: 0;
+    position: relative;
+    grid-area: Tools;
+    width:100%;
+    height:55px;
+    bottom:0px;
+    padding: 25px 0px 0px 0px;
+}
+.project--info-holder .btn--holder button{
+    position: absolute;
+    right:0px;
+    height:55px;
+}
+.project--info-holder .btn--holder .divider-line{
+    top:0px;
+}
+button.btn--close-proj{
+    height:45px;
+    width:45px;
+    background: none;
+    background-color: rgba(255,255,255,0.25);
+    position:absolute;
+    top:10px;
+    right:10px;
+    transition: background-color var(--transit-dur);
+}
+button.btn--close-proj:hover{
+    background-color: rgba(255,255,255,0.5);
+}
+button.btn--close-proj svg{
+    pointer-events: none;
 }
 .timeline--holder{
     display:grid;
@@ -826,6 +916,10 @@ footer p{
     line-height:40px;
     padding: 0px 0px 0px 10px;
 }
+.dont-show{
+    visibility:hidden;
+    opacity:0;
+}
 
 @media screen and (min-width:1370px) {
     :root{
@@ -1029,6 +1123,16 @@ footer p{
     .project--title .sub--title{
         font-size: 0.8rem;
         line-height: 0.9;
+    }
+    .project--popup{
+        width:calc(100% - 35px);
+        height:calc(100vh - 150px);
+        max-width: inherit;
+        max-height: inherit;
+        padding: 25px;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%); 
     }
     .timeline--holder {
         width:calc(100% + 5px);

@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="styles/style_reset.css">
         <link rel="stylesheet" type="text/css" href="styles/style_main.css">
+        <script src="scripts/scripts.js"></script> 
+        <title>David Martins: UX, UI & Web Designer</title>
     </head>
 
     <style>
@@ -64,15 +66,14 @@
                         <div class="project project--1">
                             <div class="project--thumb">
                             </div>
-                            <div class="project--overlay main--ov">
-                                <a href="https://dm-proj-filemanpwa.bitbucket.io/" target="_blank"></a>
+                            <div id="btn_proj_a" class="act-click project--overlay main--ov">
                             </div>
                             <div class="project--title">
                                 <div class="sub--title">
                                     Web App Layout
                                 </div>
                                 <div class="main--title">
-                                    File Explorer
+                                    File Manager
                                 </div>
                             </div>
                         </div>
@@ -80,7 +81,8 @@
                             <div class="project--thumb">
                             </div>
                             <div class="project--overlay main--ov">
-                                <a href="https://www.figma.com/file/PrpoYKyuZrUnzxBfVP1NtP/DiXit?node-id=0%3A1" target="_blank"></a>
+                                <div id="btn_proj_b" class="act-click project--overlay main--ov"></div>
+                                <!-- <a href="https://www.figma.com/file/PrpoYKyuZrUnzxBfVP1NtP/DiXit?node-id=0%3A1" target="_blank"></a> -->
                             </div>
                             <div class="project--title">
                                 <div class="sub--title">
@@ -333,16 +335,19 @@
 
 
 
-        <div class="overall--overlay" style="display:none;">
-            
+        <div id="overall_ovl" class="overall--overlay dont-show">
         </div>
-        <div class="project--popup project--1" style="display:none;">
+
+        <div id="pop_project_a" class="act-click project--popup project--1 dont-show">
             <div class="project--thumb">
             </div>
             <div class="project--overlay main--ov">
             </div>
             <div class="project--overlay sec-ov">
             </div>
+            <button id="btn_close_proj" class="act-click btn--sq btn--close-proj">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><path d="M18.91406,17.5l6.793-6.793A.99989.99989,0,0,0,24.293,9.293l-6.793,6.793L10.707,9.293A.99989.99989,0,0,0,9.293,10.707l6.793,6.793L9.293,24.293A.99989.99989,0,1,0,10.707,25.707l6.793-6.793,6.793,6.793A.99989.99989,0,0,0,25.707,24.293Z" style="fill:rgba(255, 255, 255, 1)"/></svg>
+            </button>
             
             <div class="project--info-holder">
                 <div class="project--title">
@@ -350,26 +355,52 @@
                     </div>
                     <div class="main--title">File Manager
                     </div>
+                    <div class="divider-line"></div>
                 </div>
                 <div class="project--descript">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet ornare nunc, ut molestie velit. Curabitur vel magna eu odio scelerisque feugiat quis et magna. Etiam eget massa dui. Pellentesque id sagittis felis. Aliquam sed mauris pretium, pulvinar urna eu, fringilla justo. Suspendisse ut cursus metus. Phasellus semper id neque ullamcorper ullamcorper.</p>
-                    <p>Morbi luctus, justo ac fermentum tincidunt, nunc diam tempus justo, ut fermentum elit neque sit amet neque.</p>
+                    <p>I started this ongoing project as a way to train myself in building more complex, adaptive UIs with <strong>HTML</strong> and <strong>CSS</strong>, with particular focus in exploring <strong>Flex</strong> and <strong>Grid</strong> display properties.</p>
+                    <p>Meanwhile, it became a testbed to try some things that I hadn't done before, such as designing color shiftable <strong>Icons</strong> using an <strong>SVG sprites sheet</strong> and <strong>CSS Custom Properties</strong>.</p>
+                    <p>Right now I'm in the process of coding some <strong>Javascript</strong> in order for the layout change dinamicaly with user input, applying my small newfound knowledge in this programming language.</p>
                 </div>
-                <div class="project--img-holder">
-                    <div class="project--image">
-                    </div>
-                    <div class="project--image">
-                    </div>
-                    <div class="project--image">
-                    </div>
+                <div class="btn--holder">
+                    <div class="divider-line"></div>
+                    <button class="btn--h">
+                        <a href="https://dm-proj-filemanpwa.bitbucket.io/" target="_blank">Go to Project</a>
+                    </button>
                 </div>
-                <div class="project--tools-holder">
-                    <div class="project--tool">
+            </div>
+        </div>
+
+
+
+        <div id="pop_project_b" class="act-click project--popup project--2 dont-show">
+            <div class="project--thumb">
+            </div>
+            <div class="project--overlay main--ov">
+            </div>
+            <div class="project--overlay sec-ov">
+            </div>
+            <button id="btn_close_proj" class="act-click btn--sq btn--close-proj">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35"><path d="M18.91406,17.5l6.793-6.793A.99989.99989,0,0,0,24.293,9.293l-6.793,6.793L10.707,9.293A.99989.99989,0,0,0,9.293,10.707l6.793,6.793L9.293,24.293A.99989.99989,0,1,0,10.707,25.707l6.793-6.793,6.793,6.793A.99989.99989,0,0,0,25.707,24.293Z" style="fill:rgba(255, 255, 255, 1)"/></svg>
+            </button>
+            
+            <div class="project--info-holder">
+                <div class="project--title">
+                    <div class="sub--title">Game Design
                     </div>
-                    <div class="project--tool">
+                    <div class="main--title">Dixit Mobile
                     </div>
-                    <div class="project--tool">
-                    </div>
+                    <div class="divider-line"></div>
+                </div>
+                <div class="project--descript">
+                    <p>This joint ongoing project between me and a developer friend aims at converting the Dixit board game into a mobile game, with the focus being for both of us to test out different tools of interest.</p>
+                    <p>As my past experience in designing UI was mainly with <strong>Sketch</strong>, for me, this was a way begin a complete design project in <strong>Figma</strong>, to start getting confortable with it's workings and understand how it operates <strong>Symbols/Components</strong> and <strong>Styles</strong> in comparison.</p>
+                </div>
+                <div class="btn--holder">
+                    <div class="divider-line"></div>
+                    <button class="btn--h">
+                        <a href="https://www.figma.com/file/PrpoYKyuZrUnzxBfVP1NtP/DiXit?node-id=0%3A1" target="_blank">Go to Project</a>
+                    </button>
                 </div>
             </div>
         </div>
