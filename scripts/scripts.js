@@ -18,7 +18,10 @@ function operateButton(pressedElem){
         classToggle('pop_project_b', 'dont-show');
     }
     else if(pressedElem.classList.contains('btn--close-proj')){
-        
+        closePopUp();
+    }
+    else if(pressedElem === document.getElementById('overall_ovl')){
+        console.log('YUP');
         closePopUp();
     }
     else{

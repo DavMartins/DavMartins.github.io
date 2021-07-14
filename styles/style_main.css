@@ -31,6 +31,7 @@
     --a-color: var(--main-color);
     --a-alt-color: 185, 240, 235;
     --base-font-size:16px;
+    --base-font-color: 65, 65, 65;
     --larger-font-size:1.15rem;
     --main-holder-width:1024px;
     --main-holder-padding:35px;
@@ -41,7 +42,7 @@
     --tl-stop-margin:calc((var(--tl-graph-width) - var(--tl-stop-width)) / 2);
     --tl-skill-width:var(--tl-graph-width);
     --tl-skill-margin:10px;
-    --tl-details-width:90px;
+    --tl-details-width:105px;
     --tl-descript-width:calc(100% - (var(--tl-graph-width) + var(--tl-details-width)));
     --tl-descript-indent:40px;
     --li-bullet-width:13px;
@@ -58,7 +59,7 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    font-family: NotoSans-Regular;
+    font-family: NotoSans-Regular, Verdana, Tahoma, Sans-Serif;
     line-height: 1.7;
     color: rgb(65, 65, 65);
 }
@@ -203,22 +204,26 @@ button{
     text-decoration: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    /* transition-property: background-color; */
     cursor: pointer;
+    box-shadow: 0px 3px 10px -3px rgba(0, 0, 0, 0.5);
+    transition: box-shadow var(--transit-dur);
 }
 button.btn--sq{
     height:45px;
     width:45px;
     padding:5px;
 }
+button:hover{
+    box-shadow: 0px 21px 18px -16px rgba(0, 0, 0, 0.23);
+}
 button a{
     color:rgba(var(--a-alt-color));
+    font-family: NotoSans-Medium;
 }
-button a::after{
+button:hover a::after{
     background-color:rgba(var(--a-alt-color));
-}
-button a:hover::after{
-    background-color:rgba(var(--a-alt-color));
+    width:100%;
+    opacity:0.8;
 }
 .dark-bg{
     background: var(--main-gradient);
@@ -466,8 +471,8 @@ header .main-holder{
     position:fixed;
     width:100%;
     height:100%;
-    background-color:rgba(220, 232, 235, 0.85);
-    backdrop-filter:blur(7px);
+    background-color:rgba(161, 195, 215, 0.85);
+    backdrop-filter:blur(10px);
     z-index:4;
     top:0px;
     visibility: visible;
@@ -536,21 +541,21 @@ header .main-holder{
     color:rgb(255, 255, 255);
 }
 .project--popup{
-    width:calc(100% - 35px);
-    height:calc(100vh - 35px);
-    max-width: 720px;
+    width:calc(100% - 45px);
+    height:calc(100vh - 45px);
+    max-width: 700px;
     /* min-height: 650px; */
-    max-height: 720px;
+    max-height: 700px;
     display:flex;
     flex-direction: column;
     position:fixed;
-    padding: 40px;
+    padding: 30px 35px 20px 35px;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0px 20px 45px -20px rgba(0, 0, 0, 0.40);
+    box-shadow: 0px 10px 50px -20px rgba(0, 0, 0, 0.40);
     box-sizing: border-box;
     background-color: rgba(255,255,255,0.93);
     z-index:5;
@@ -565,10 +570,10 @@ header .main-holder{
     max-height:calc(100vh - 300px); */
 }
 .project--popup .project--thumb{
-    width:calc(100% + 6px);
-    height:calc(100% + 6px);
-    top:-3px;
-    left:-3px;
+    width:calc(100% + 10px);
+    height:calc(100% + 10px);
+    top:-5px;
+    left:-5px;
     filter: blur(3px);
 }
 .project--popup .project--overlay.main--ov{
@@ -592,8 +597,10 @@ header .main-holder{
 }
 .project--info-holder .project--title .main--title{
     font-size:1.8rem;
+    line-height:1.8;
 }
 .project--info-holder .project--title .sub--title{
+    font-size:0.95rem;
     color:rgb(65, 65, 65);
 }
 .project--info-holder .project--title .main--title::after{
@@ -641,7 +648,7 @@ header .main-holder{
     width:100%;
     height:55px;
     bottom:0px;
-    padding: 25px 0px 0px 0px;
+    padding: 20px 0px 0px 0px;
 }
 .project--info-holder .btn--holder button{
     position: absolute;
@@ -655,14 +662,18 @@ button.btn--close-proj{
     height:45px;
     width:45px;
     background: none;
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(255,255,255,0);
     position:absolute;
     top:10px;
     right:10px;
-    transition: background-color var(--transit-dur);
+    box-shadow: 0px 21px 18px -16px rgba(0, 0, 0, 0);
+    z-index:1;
+    transition: all var(--transit-dur);
+    
 }
 button.btn--close-proj:hover{
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.3);
+    box-shadow: 0px 21px 18px -16px rgba(0, 0, 0, 0.23);
 }
 button.btn--close-proj svg{
     pointer-events: none;
@@ -670,7 +681,7 @@ button.btn--close-proj svg{
 .timeline--holder{
     display:grid;
     position:relative;
-    grid-auto-flow: row;
+    grid-auto-flow:row;
 }
 .timeline--holder div{
     /* transition: all var(--transit-dur); */
@@ -782,12 +793,24 @@ button.btn--close-proj svg{
     left:50%;
     transform: translate(-50%, -50%);
 }
+.level--group{
+    width:100%;
+    position: relative;
+    top:0px;
+    padding:3px 0px 0px 0px;
+    text-align: left;
+    color: rgba(var(--base-font-color), 0.4);
+}
+
+.skill--title{
+    margin:0px 0px 7px 0px;
+    font-size: 0.75rem;
+    line-height: 15px;
+    font-family: NotoSans-Bold;  
+}
 .level-bar{
     width:100%;
     height: 10px;
-    position: relative;
-    top:50%;
-    transform: translateY(-50%);
     border-radius: 2px;
     background-color: rgba(0,0,0,0.15);
 }
@@ -911,7 +934,6 @@ footer p{
     height:40px;
 }
 .contact--info{
-    font-family: NotoSans-Medium;
     font-size: var(--base-font-size);
     line-height:40px;
     padding: 0px 0px 0px 10px;
@@ -1054,6 +1076,10 @@ footer p{
     section{
         padding:40px 0px;
     }
+    button{
+        border-radius:11px;
+    }
+    
     .subject-photo-holder{
         padding:10px;
     }
@@ -1129,10 +1155,26 @@ footer p{
         height:calc(100vh - 150px);
         max-width: inherit;
         max-height: inherit;
-        padding: 25px;
-        top:50%;
-        left:50%;
-        transform: translate(-50%, -50%); 
+        padding: 25px 15px 15px 15px;
+    }
+    .project--info-holder .project--title .main--title {
+        padding:0px 5px;
+    }
+    .project--info-holder .project--title .sub--title {
+        padding:0px 5px;
+    }
+    .project--info-holder .btn--holder{
+        height:55px;
+        bottom:0px;
+        padding: 15px 0px 0px 0px;
+    }
+    .project--descript {
+        padding: 15px 5px;
+    }
+    button.btn--close-proj {
+        top: 3px;
+        right: 3px;
+        background-color: rgba(255,255,255,0);
     }
     .timeline--holder {
         width:calc(100% + 5px);
@@ -1150,7 +1192,7 @@ footer p{
         display:block;
     }
     .timeline--level-holder {
-        padding: 0px 10px 0px 15px;;
+        padding: 0px 10px 0px 15px;
     }
     .timeline--level-holder .timeline--level svg {
         width: 30px;
@@ -1160,6 +1202,10 @@ footer p{
     }
     .timeline--descript{
         padding:0px 0px 0px 15px;
+    }
+    .skill--title{
+        opacity:0;
+        visibility:hidden;  
     }
     .level-bar {
         height: 5px;
