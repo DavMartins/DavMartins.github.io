@@ -627,7 +627,7 @@ header .main-holder{
     position: relative;
     margin: 5px 0px;
     border-radius:3px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.3); 
 }
 .project--descript{
     height:100%;
