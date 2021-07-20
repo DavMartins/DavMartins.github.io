@@ -185,7 +185,7 @@ ul li .li--bullet{
     box-sizing: border-box;
 }
 .control-box{
-    margin:35px 0px 0px 0px;
+    margin:35px 0px 5px 0px;
     filter: drop-shadow(0px 5px 10px rgba(77, 56, 56, 0.11));
 }
 .control-box--title-holder{
@@ -994,10 +994,10 @@ button.btn--close-proj svg{
 }
 .timeline--divider .divider--backdrop{
     height:calc(100% + 20px);
-    width:calc(100% + var(--tl-details-width));
+    width:calc(100% + var(--tl-details-width) + 15px);
     position: absolute;
     top:0px;
-    right:0px;
+    right:-15px;
     background: linear-gradient(180deg, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
 }
 .timeline--divider h2{
@@ -1202,6 +1202,9 @@ footer a::after{
         text-align: center;
         padding: 35px 0px 75px 0px;
     }
+    .graph-line--stop-holder .reference--line{
+        height:120px;
+    }
 }
 
 @media screen and (max-width:550px) {
@@ -1260,6 +1263,9 @@ footer a::after{
     }
     .subject-intro p{
         padding:5px 0px 85px 0px;
+    }
+    .control-box{
+        margin:35px 0px 15px 0px;
     }
     .graph-line{
         height:120px;
