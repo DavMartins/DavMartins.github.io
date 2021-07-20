@@ -1,3 +1,5 @@
+@import url('style_reset.css');
+
 @font-face {
     font-family: NotoSans-Regular;
     src: url(../fonts/NotoSansJP-Regular.otf);
@@ -27,11 +29,13 @@
 :root{
     --main-blue:0, 130, 182;
     --mid-blue:35, 196, 255;
+    --second-blue:221, 243, 251;
     --accent-color:75, 210, 215;
     --a-color: var(--main-color);
     --a-alt-color: 185, 240, 235;
     --base-font-size:16px;
     --base-font-color: 65, 65, 65;
+    --base-font-fallback: Verdana, Tahoma, Sans-Serif;
     --larger-font-size:1.15rem;
     --main-holder-width:1024px;
     --main-holder-padding:35px;
@@ -59,8 +63,8 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    font-family: NotoSans-Regular, Verdana, Tahoma, Sans-Serif;
-    line-height: 1.7;
+    font-family: NotoSans-Regular, var(--base-font-fallback);
+    line-height: 1.75;
     color: rgb(65, 65, 65);
 }
 div{
@@ -121,6 +125,13 @@ p{
     margin: 0px;
     padding:5px 0px 15px 0px;
 }
+span.skill-highlight{
+    background-color:rgba(var(--second-blue), 1);
+    margin:0px 0px;
+    padding:1px 5px 1px 5px;
+    font-family: NotoSans-Medium, var(--base-font-fallback);
+    border-radius: 3px;
+}
 a{
     position: relative;
     text-decoration: none;
@@ -132,7 +143,7 @@ a::after{
     height:2px;
     display: block;
     position:absolute;
-    bottom: -5px;
+    margin-top: 5px;
     border-radius: 2px;
     box-sizing: border-box;
     opacity:0.4;
@@ -173,22 +184,99 @@ ul li .li--bullet{
     border: solid 2.5px rgba(var(--accent-color), 1);
     box-sizing: border-box;
 }
-ul ul{
-    padding-left: 20px;
-    padding:20px 0px 20px 25px;
+.control-box{
+    margin:35px 0px 0px 0px;
+    filter: drop-shadow(0px 5px 10px rgba(77, 56, 56, 0.11));
 }
-ul ul li{
-    font-family: NotoSans-Light;
+.control-box--title-holder{
+    height:45px;
+    position:relative;
+    display:flex;
+    line-height:45px;
 }
-ul ul li .li--bullet{
-    width:calc(var(--li-bullet-width) - 4px);
-    height: calc(var(--li-bullet-width) - 4px);
+
+.control-box .control-box--title{
+    height:100%;
+    flex-basis: 50%;
+    position:relative;
+    color:rgba(255,255,255,1);
+    background:var(--btn-gradient);
+    padding:0px 20px;
+    box-sizing: border-box;
+    border-radius: 15px 15px 0px 0px;
+    font-family: NotoSans-Medium, var(--base-font-fallback);
+}
+.control-box .control-box--title svg{
+    height:10px;
+    width:10px;
+    position:absolute;
+    right:-10px;
+    bottom:0px;
+}
+.control-box .warning{
+    height:100%;
+    flex-basis: 50%;
+    position:relative;
+    line-height:25px;
+    text-align: right;
+    color:rgba(var(--base-font-color),1);
+    padding:10px 45px 10px 0px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-family: NotoSans-Bold, var(--base-font-fallback);
+}
+.control-box .warning svg{
+    height:25px;
+    width:25px;
+    right:10px;
+    position:absolute;
+}
+.control-box ul{
+    padding:10px 20px 15px 20px;
+    background-color:rgba(var(--second-blue), 1);
+    border-radius: 0px 15px 15px 15px;
+    box-sizing:border-box;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.26);
+}
+.control-box ul li{
+    margin:10px 0px 15px 0px;
+}
+.control-box .client{
+    margin-bottom:1px;
+    position:relative;
+    font-size:0.8rem;
+    line-height:1.6;
+    color: rgba(var(--base-font-color), 0.4);
+}
+.control-box .client span{
+    font-family: NotoSans-Black, var(--base-font-fallback);
+    color: rgba(var(--base-font-color), 1);
+}
+.control-box .work--descript{
+    position: relative;
+}
+.control-box .work--descript::before{
+    content:"";
+    width:calc(var(--li-bullet-width) - 6px);
+    height: calc(var(--li-bullet-width) - 6px);
     display:block;
     position: absolute;
-    top:11px;
-    left:0px;
+    top:12px;
+    left:-15px;
     border-radius: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(var(--main-blue));
+    border: none;
+    box-sizing: border-box;
+}
+.control-box ul li .li--bullet{
+    width:calc(var(--li-bullet-width) - 6px);
+    height: calc(var(--li-bullet-width) - 6px);
+    display:block;
+    position: absolute;
+    top:14px;
+    left:5px;
+    border-radius: 100%;
+    background-color: rgba(var(--main-blue));
     border: none;
     box-sizing: border-box;
 }
@@ -655,6 +743,27 @@ header .main-holder{
     width:100%;
     height:100%;
 }
+.project--warning{
+    min-height:45px;
+    width:100%;
+    position:relative;
+    padding:10px 15px 10px 55px;
+    margin:5px 0px 25px 0px;
+    font-size: 0.9rem;
+    color: rgba(var(--base-font-color), 1);
+    background-color: rgba(255, 214, 48,0.2);
+    border-radius:7px;
+    box-shadow: inset 0px 0px 0px 2px rgb(255, 214, 48);
+    box-sizing: border-box;
+}
+.project--warning svg{
+    height:25px;
+    width:25px;
+    position: absolute;
+    top:10px;
+    left:15px;
+
+}
 .project--info-holder .btn--holder{
     flex-grow: 0;
     flex-shrink: 0;
@@ -817,7 +926,7 @@ button.btn--close-proj svg{
     top:0px;
     padding:3px 0px 0px 0px;
     text-align: left;
-    color: rgba(var(--base-font-color), 0.4);
+    color: rgba(var(--base-font-color), 1);
 }
 
 .skill--title{
@@ -842,6 +951,9 @@ button.btn--close-proj svg{
 }
 .level-bar.lv--85::after{
     width: 85%;
+}
+.level-bar.lv--75::after{
+    width: 75%;
 }
 .level-bar.lv--65::after{
     width: 65%;
@@ -921,6 +1033,9 @@ footer p{
     padding: 5px 20px 5px 0px;
     color: rgba(0, 0, 0, 0.6);
 }
+footer a::after{
+    margin-top:-5px;
+}
 .contacts--holder{
     width:100%;
     position:relative;
@@ -979,6 +1094,7 @@ footer p{
 }
 
 @media screen and (max-width:950px) {
+    
     :root{
         --photo-hold-size:175px;
     }
@@ -1024,6 +1140,33 @@ footer p{
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 40px;
         grid-auto-flow: row;
+    }
+}
+
+@media screen and (max-width:780px){
+
+    .control-box--title-holder{
+        display:block;
+    }
+    .control-box .control-box--title{
+        width:85%;
+    }
+    .control-box .warning{
+        height:45px;
+        width:calc(100% - 20px);
+        margin:0px 10px;
+        position:absolute;
+        line-height:25px;
+        text-align: right;
+        bottom:-55px;
+        right:0px;
+        color: rgba(var(--base-font-color), 1);
+        /* background-color: rgba(0,0,0,0.03); */
+        border-radius:7px;
+        box-shadow: inset 0px 0px 0px 2px rgb(255, 214, 48);
+    }
+    .control-box.has-warning ul{
+        padding-top: 65px
     }
 }
 
