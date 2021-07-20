@@ -128,7 +128,7 @@ p{
 span.skill-highlight{
     background-color:rgba(var(--second-blue), 1);
     margin:0px 0px;
-    padding:1px 5px 1px 5px;
+    padding:0px 5px 2px 5px;
     font-family: NotoSans-Medium, var(--base-font-fallback);
     border-radius: 3px;
 }
@@ -1161,7 +1161,7 @@ footer a::after{
         bottom:-55px;
         right:0px;
         color: rgba(var(--base-font-color), 1);
-        /* background-color: rgba(0,0,0,0.03); */
+        background-color: rgba(255, 214, 48,0.2);
         border-radius:7px;
         box-shadow: inset 0px 0px 0px 2px rgb(255, 214, 48);
     }
@@ -1237,7 +1237,7 @@ footer a::after{
         padding:var(--main-holder-padding);
     }
     ul li .li--bullet{
-        top: 8px;
+        top: 9px;
         border: solid 2px rgba(var(--accent-color), 1);
     }
     section{
@@ -1245,6 +1245,9 @@ footer a::after{
     }
     button{
         border-radius:11px;
+    }
+    .control-box .work--descript::before{
+        top:10px;
     }
     
     .subject-photo-holder{
@@ -1365,10 +1368,7 @@ footer a::after{
         padding: 0px 10px 0px 15px;
     }
     .timeline--level-holder .timeline--level svg {
-        width: 30px;
-        min-width: 30px;
-        top: 35px;
-        left: -20px
+        visibility: hidden;
     }
     .timeline--descript{
         padding:0px 0px 0px 15px;
